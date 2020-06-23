@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="match"
+            type="com.example.android.dreamteam.model.Match" />
+        <variable
+            name="clickListener"
+            type="com.example.android.dreamteam.ui.home.MatchListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8sp"
+        android:layout_margin="10sp"
+        >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(match)}">
+
+
+        <TextView
+            android:id="@+id/match_date_item"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15sp"
+            android:layout_marginRight="15sp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:paddingHorizontal="11sp"
+            android:paddingVertical="28sp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:dateString="@{match.date}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="THU\n\n12/31" />
+
+        <TextView
+            android:id="@+id/match_title_item"
+            style="@style/TextAutoResizing"
+            android:layout_marginBottom="0sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginHorizontal="15sp"
+            app:autoSizeMinTextSize="18sp"
+            android:textStyle="bold"
+            android:text="@{match.name}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/match_date_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Partita di Calcetto"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/match_place_icon_item"
+            style="@style/IconMatchItemHome"
+            android:layout_marginStart="15sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginTop="0sp"
+            app:layout_constraintEnd_toStartOf="@id/match_place_item"
+            app:layout_constraintStart_toEndOf="@id/match_date_item"
+            app:layout_constraintTop_toBottomOf="@+id/match_title_item"
+            app:layout_constraintBottom_toTopOf="@id/match_time_icon_item"
+            app:srcCompat="@drawable/ic_place"
+            />
+
+        <TextView
+            android:id="@+id/match_place_item"
+            style="@style/TextAutoResizing"
+            android:layout_margin="15sp"
+            android:text="@{match.place}"
+            app:layout_constraintTop_toTopOf="@id/match_place_icon_item"
+            app:layout_constraintBottom_toBottomOf="@id/match_place_icon_item"
+            app:layout_constraintStart_toEndOf="@id/match_place_icon_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Via del Risorgimento, 98"/>
+
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/match_time_icon_item"
+            style="@style/IconMatchItemHome"
+            android:layout_marginLeft="15sp"
+            android:layout_marginStart="15sp"
+            android:layout_marginVertical="8sp"
+            app:srcCompat="@drawable/ic_access_time_black_24dp"
+            app:layout_constraintStart_toEndOf="@id/match_date_item"
+            app:layout_constraintEnd_toStartOf="@id/match_time_item"
+            app:layout_constraintTop_toBottomOf="@id/match_place_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/match_time_item"
+            style="@style/TextAutoResizing"
+            android:layout_margin="5sp"
+            app:timeString="@{match.date}"
+            tools:text="15:30"
+            app:layout_constraintStart_toEndOf="@id/match_time_icon_item"
+            app:layout_constraintTop_toTopOf="@id/match_time_icon_item"
+            app:layout_constraintEnd_toStartOf="@id/match_price_ic_item"
+            app:layout_constraintBottom_toBottomOf="@id/match_time_icon_item"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/match_price_ic_item"
+            style="@style/IconMatchItemHome"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/match_time_item"
+            app:layout_constraintEnd_toStartOf="@id/match_price_item"
+            app:layout_constraintStart_toEndOf="@id/match_time_item"
+            app:layout_constraintTop_toTopOf="@id/match_time_item"
+            app:srcCompat="@drawable/ic_euro_symbol_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/match_price_item"
+            style="@style/TextAutoResizing"
+            android:layout_margin="5sp"
+            app:priceString="@{match.price}"
+            app:layout_constraintStart_toEndOf="@id/match_price_ic_item"
+            app:layout_constraintTop_toTopOf="@id/match_price_ic_item"
+            app:layout_constraintEnd_toStartOf="@+id/match_freeslots_ic_item"
+            app:layout_constraintBottom_toBottomOf="@id/match_price_ic_item"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/match_freeslots_ic_item"
+            style="@style/IconMatchItemHome"
+            android:layout_marginHorizontal="5sp"
+            app:layout_constraintTop_toTopOf="@id/match_price_item"
+            app:layout_constraintStart_toEndOf="@id/match_price_item"
+            app:layout_constraintEnd_toStartOf="@id/match_free_slots_item"
+            app:layout_constraintBottom_toBottomOf="@id/match_price_item"
+            app:srcCompat="@drawable/ic_group_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/match_free_slots_item"
+            style="@style/TextAutoResizing"
+            android:layout_marginRight="15sp"
+            android:layout_marginEnd="15sp"
+            app:leftParticipantsString="@{match}"
+            app:layout_constraintTop_toTopOf="@id/match_freeslots_ic_item"
+            app:layout_constraintStart_toEndOf="@id/match_freeslots_ic_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/match_freeslots_ic_item"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

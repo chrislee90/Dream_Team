@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="matchPlayersListViewModel"
+            type="com.example.android.dreamteam.ui.match.MatchPlayersViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.android.dreamteam.ui.match.MatchPlayersFragment">
+
+        <TextView
+            android:id="@+id/no_requests_or_friends"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            app:bindFriendsListStatus="@{matchPlayersListViewModel.fragmentStatus}"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_players"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:bindFriendsListStatus="@{matchPlayersListViewModel.fragmentStatus}"/>
+
+    </LinearLayout>
+
+
+</layout>

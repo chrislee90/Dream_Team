@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="newMatchViewModel"
+            type="com.example.android.dreamteam.ui.newMatch.NewMatchViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.newMatch.NewMatchFragment">
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20sp"
+                android:text="Match Title:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
+            <EditText
+                android:id="@+id/match_title"
+                android:layout_width="138dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginEnd="84dp"
+                android:layout_marginRight="84dp"
+                android:maxWidth="145dp"
+                android:hint="Title"
+                android:maxLength="12"
+                android:text="@={newMatchViewModel.matchTitle}"
+                android:textSize="20sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/text_title"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Match Date:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/text_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+            <ImageButton
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/text_date"
+                app:layout_constraintStart_toStartOf="@+id/match_title"
+                app:layout_constraintTop_toTopOf="@+id/text_date"
+                app:layout_constraintVertical_bias="0.476"
+                app:srcCompat="@drawable/ic_calendar_today_18dp" />
+
+
+            <TextView
+                android:id="@+id/datePickerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{newMatchViewModel.dateString}"
+                app:layout_constraintBottom_toBottomOf="@+id/datePicker"
+                app:layout_constraintEnd_toEndOf="@+id/match_title"
+                app:layout_constraintStart_toEndOf="@+id/datePicker"
+                app:layout_constraintTop_toTopOf="@+id/datePicker" />
+
+            <TextView
+                android:id="@+id/text_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Match Time:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/text_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_date" />
+
+            <TextView
+                android:id="@+id/timePickerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{newMatchViewModel.timeString}"
+                app:layout_constraintBottom_toBottomOf="@+id/timePicker"
+                app:layout_constraintEnd_toEndOf="@+id/match_title"
+                app:layout_constraintStart_toEndOf="@+id/timePicker"
+                app:layout_constraintTop_toTopOf="@+id/timePicker" />
+
+            <ImageButton
+                android:id="@+id/timePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/text_time"
+                app:layout_constraintStart_toStartOf="@+id/datePicker"
+                app:layout_constraintTop_toTopOf="@+id/text_time"
+                app:layout_constraintVertical_bias="0.476"
+                app:srcCompat="@drawable/ic_clock_18dp" />
+
+            <TextView
+                android:id="@+id/matchPlaceTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/match_place_title"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/text_time"
+                app:layout_constraintTop_toBottomOf="@+id/text_time" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintStart_toStartOf="@+id/matchPlaceTitleTextView"
+                app:layout_constraintTop_toBottomOf="@+id/matchPlaceTitleTextView">
+
+                <fragment
+                    android:id="@+id/autocomplete_support_fragment"
+                    android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:layout_editor_absoluteX="0dp" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/matchPlaceAutocompletedTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/selected_address"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+            <TextView
+                android:id="@+id/matchPlaceAutocompletedTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="@string/match_place_placeholder"
+                android:text="@={newMatchViewModel.matchPlace}"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/matchPlaceAutocompletedTitleTextView" />
+
+            <TextView
+                android:id="@+id/latLngTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5dp"
+                android:text="@={newMatchViewModel.matchPlaceLatLng}"
+                android:visibility="gone"
+                app:layout_constraintLeft_toRightOf="@id/matchPlaceAutocompletedTitleTextView"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+            <Switch
+                android:id="@+id/switch_public"
+                android:layout_width="273dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:checked="@={newMatchViewModel.switchButton}"
+                android:switchMinWidth="60dp"
+                android:text="@string/public_match_title"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/browser_actions_title_color"
+                app:layout_constraintBottom_toTopOf="@+id/create_match_btn"
+                app:layout_constraintEnd_toEndOf="@+id/match_price"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/match_price"
+                app:layout_constraintVertical_bias="0.132" />
+
+            <TextView
+                android:id="@+id/text_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:text="Match Type:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/price_text"
+                app:layout_constraintTop_toBottomOf="@+id/switch_public" />
+
+            <RadioGroup
+                android:id="@+id/group_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@={newMatchViewModel.matchTypeButton}"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/text_type"
+                app:layout_constraintEnd_toEndOf="@+id/match_price"
+                app:layout_constraintStart_toStartOf="@+id/match_price"
+                app:layout_constraintTop_toTopOf="@+id/text_type">
+
+                <RadioButton
+                    android:id="@+id/five_a_side"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="20sp"
+                    android:text="Five-a-side" />
+
+                <RadioButton
+                    android:id="@+id/eight_a_side"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="20sp"
+                    android:text="Eight-a-side" />
+
+                <RadioButton
+                    android:id="@+id/football"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="20sp"
+                    android:text="Football" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Match Price:"
+                android:layout_marginTop="32dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/matchPlaceTitleTextView"
+                app:layout_constraintTop_toBottomOf="@+id/matchPlaceAutocompletedTextView" />
+
+
+            <EditText
+                android:id="@+id/match_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="ex. 5.5, 6.50, 5"
+                android:inputType="numberDecimal"
+                android:text="@={newMatchViewModel.matchPrice}"
+                android:textSize="20sp"
+                android:maxLength="8"
+                app:layout_constraintBottom_toBottomOf="@+id/price_text"
+                app:layout_constraintEnd_toEndOf="@+id/match_title"
+                app:layout_constraintHorizontal_bias="0.228"
+                app:layout_constraintStart_toStartOf="@+id/timePicker"
+                app:layout_constraintTop_toTopOf="@+id/price_text"
+                app:layout_constraintVertical_bias="0.523" />
+
+            <Button
+                android:id="@+id/create_match_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:layout_marginTop="20dp"
+                android:text="Create Match!"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/group_type" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/match_title" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="7dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/datePicker" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="430dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/matchPlaceAutocompletedTextView" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/match_price" />
+
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switch_public" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

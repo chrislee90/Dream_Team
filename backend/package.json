@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for Dream Team app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisLee90/DreamTeam.git"
+  },
+  "keywords": [
+    "DreamTeam",
+    "app"
+  ],
+  "author": "Christian Conti, Riccardo Pattuglia, Valerio Trenta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisLee90/DreamTeam/issues"
+  },
+  "homepage": "https://github.com/ChrisLee90/DreamTeam#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase": "^7.11.0"
+  }
+}

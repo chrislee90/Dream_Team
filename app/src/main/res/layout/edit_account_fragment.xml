@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="editAccountViewModel"
+            type="com.example.android.dreamteam.ui.account.EditAccountViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:userApiStatus="@{editAccountViewModel.status}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Insert the new value in the field you wish to update, then click on Save Updates button."
+                    android:textSize="12dp"
+                    android:layout_margin="20sp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/icon_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_account_box_green" />
+
+                    <TextView
+                        android:id="@+id/name_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name:"
+                        android:textSize="14dp"
+                        android:layout_margin="10sp"
+                        android:textStyle="bold"
+                        android:maxLength="25"
+                        app:layout_constraintBottom_toBottomOf="@+id/icon_name"
+                        app:layout_constraintStart_toEndOf="@+id/icon_name"
+                        app:layout_constraintTop_toTopOf="@+id/icon_name" />
+
+                    <EditText
+                        android:id="@+id/edit_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@{editAccountViewModel.name}"
+                        android:text="@={editAccountViewModel.name}"
+                        android:textSize="20dp"
+                        android:layout_margin="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/name_text"/>
+
+                    <TextView
+                        android:id="@+id/phone_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Phone:"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:layout_margin="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/icon_phone"
+                        app:layout_constraintStart_toEndOf="@+id/icon_phone"
+                        app:layout_constraintTop_toTopOf="@+id/icon_phone"
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/icon_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_name"
+                        app:srcCompat="@drawable/ic_call_18dp_green" />
+
+                    <EditText
+                        android:id="@+id/edit_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@{editAccountViewModel.phoneNumber}"
+                        android:text="@={editAccountViewModel.phoneNumber}"
+                        android:textSize="20dp"
+                        android:inputType="phone"
+                        android:layout_margin="10sp"
+                        android:maxLength="15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/phone_text"/>
+
+                    <TextView
+                        android:id="@+id/role_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Role:"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:layout_margin="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/icon_role"
+                        app:layout_constraintStart_toEndOf="@+id/icon_role"
+                        app:layout_constraintTop_toTopOf="@+id/icon_role"
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/icon_role"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10sp"
+                        app:srcCompat="@drawable/ic_role_green"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_phone"/>
+
+                    <RadioGroup
+                        android:id="@+id/role_radio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:editAccountRole="@{editAccountViewModel.roleStatus}"
+                        android:checkedButton="@={editAccountViewModel.roleButton}"
+                        app:layout_constraintStart_toStartOf="@+id/icon_role"
+                        app:layout_constraintTop_toBottomOf="@+id/role_text">
+
+                        <RadioButton
+                            android:id="@+id/radioNull"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="None"/>
+
+                        <RadioButton
+                            android:id="@+id/radioKeeper"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Keeper" />
+
+                        <RadioButton
+                            android:id="@+id/radioDefender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Defender"/>
+
+                        <RadioButton
+                            android:id="@+id/radioMid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Midfielder" />
+
+                        <RadioButton
+                            android:id="@+id/radioAtt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Striker" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/info_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Extra info:"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:layout_margin="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/icon_info"
+                        app:layout_constraintStart_toEndOf="@+id/icon_info"
+                        app:layout_constraintTop_toTopOf="@+id/icon_info"/>
+
+                    <ImageView
+                        android:id="@+id/icon_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/role_radio"
+                        app:srcCompat="@drawable/ic_ann_green" />
+
+                    <EditText
+                        android:id="@+id/edit_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@{editAccountViewModel.info}"
+                        android:text="@={editAccountViewModel.info}"
+                        android:textSize="20dp"
+                        android:maxLength="30"
+                        android:layout_margin="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/info_text"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Save Updates"
+                        android:textSize="12dp"
+                        android:onClick="@{() -> editAccountViewModel.updateUser()}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_info"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/edit_status_image"
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            app:userApiStatus="@{editAccountViewModel.status}" />
+
+    </LinearLayout>
+
+
+
+</layout>

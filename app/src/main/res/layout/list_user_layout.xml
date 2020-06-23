@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="user"
+            type="com.example.android.dreamteam.model.User" />
+        <variable
+            name="clickListener"
+            type="com.example.android.dreamteam.utils.FriendsListAdapter.UserListener"/>
+        <variable
+            name="matchPlayersViewModel"
+            type="com.example.android.dreamteam.ui.match.MatchPlayersViewModel" />
+        <variable
+            name="button1Listener"
+            type="com.example.android.dreamteam.utils.FriendsListAdapter.UserListener"/>
+        <variable
+            name="button2Listener"
+            type="com.example.android.dreamteam.utils.FriendsListAdapter.UserListener"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(user)}">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:visibility="@{user.is_f ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/pic_friend"
+            app:layout_constraintEnd_toEndOf="@+id/pic_friend"
+            app:srcCompat="@drawable/ic_friend_added" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/pic_friend"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:picFriend="@{user}" />
+
+        <TextView
+            android:id="@+id/name_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:textSize="15dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/pic_friend"
+            app:layout_constraintTop_toTopOf="@+id/pic_friend"
+            app:nameFriend="@{user}" />
+
+        <TextView
+            android:id="@+id/role_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/name_friend"
+            app:layout_constraintTop_toBottomOf="@+id/name_friend"
+            app:roleFriend="@{user}" />
+
+        <Button
+            android:id="@+id/interaction1_list"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:onClick="@{() -> button1Listener.onClick(user)}"
+            app:layout_constraintBottom_toBottomOf="@+id/pic_friend"
+            app:layout_constraintEnd_toStartOf="@+id/interaction2_list"
+            app:layout_constraintTop_toTopOf="@+id/pic_friend"
+            app:match_list_players_status="@{matchPlayersViewModel.listStatus}"
+            app:match_players_view_model="@{matchPlayersViewModel}"
+            app:user="@{user}" />
+
+        <Button
+            android:id="@+id/interaction2_list"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:onClick="@{() -> button2Listener.onClick(user)}"
+            app:layout_constraintBottom_toBottomOf="@+id/pic_friend"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pic_friend"
+            app:match_list_players_status="@{matchPlayersViewModel.listStatus}"
+            app:match_players_view_model="@{matchPlayersViewModel}"
+            app:user="@{user}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

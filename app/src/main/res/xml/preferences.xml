@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="Notifications"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="notifications"
+            app:title="Allow"
+            android:summary="Allow your device to receive notifications from Dream Team about matches, friends and messages."
+            app:iconSpaceReserved="false"
+            app:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="privacy_category"
+        app:title="Privacy"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="phonePublic"
+            app:title="Show phone number"
+            android:summary="Allow other users to see your phone number on your profile."
+            app:iconSpaceReserved="false"
+            app:defaultValue="false"/>
+
+        <SwitchPreferenceCompat
+            android:key="emailPublic"
+            app:title="Show e-mail"
+            android:summary="Allow other users to see your e-mail address on your profile."
+            app:iconSpaceReserved="false"
+            app:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="account_category"
+        app:title="Account Management"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="logout"
+            app:title="Logout"
+            android:summary="Perform logout."
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="account"
+            app:title="Account"
+            android:summary="Show and edit your profile."
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="archive"
+            app:title="Matches archive"
+            android:summary="Explore all the matches you played."
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

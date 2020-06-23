@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="matchViewModel"
+            type="com.example.android.dreamteam.ui.match.MatchViewModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:bindMatchViewStatus="@{matchViewModel.fragmentStatus}">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.match.MatchFragment">
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imagetrans"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:alpha="0"
+                    app:layout_constraintBottom_toBottomOf="@+id/map"
+                    app:layout_constraintEnd_toEndOf="@+id/map"
+                    app:layout_constraintStart_toStartOf="@+id/map"
+                    app:layout_constraintTop_toTopOf="@+id/map" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="306dp"
+                    android:layout_height="240dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="36dp"
+                    app:layout_constraintBottom_toTopOf="@+id/number_participants"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/map"
+                    app:cardElevation="8dp"
+                    app:cardMaxElevation="10dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:context=".ui.match.MatchFragment">
+
+                        <TextView
+                            android:id="@+id/match_title_print"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:text="@{matchViewModel.match.name}"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <View
+                            android:id="@+id/divider17"
+                            android:layout_width="1dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="?android:attr/listDivider"
+                            tools:layout_editor_absoluteX="91dp"
+                            tools:layout_editor_absoluteY="1dp"
+                            app:layout_constraintStart_toEndOf="@+id/match_title_print"
+                            app:layout_constraintTop_toTopOf="@+id/match_title_print"
+                            app:layout_constraintBottom_toBottomOf="@+id/match_title_print"/>
+
+                        <ImageView
+                            android:id="@+id/icon_type"
+                            android:layout_width="48dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/match_title_print"
+                            app:layout_constraintStart_toEndOf="@+id/divider17"
+                            app:layout_constraintTop_toTopOf="@+id/match_title_print"
+                            app:layout_constraintVertical_bias="1.0"
+                            app:srcCompat="@drawable/ic_sports_soccer_18dp" />
+
+                        <TextView
+                            android:id="@+id/match_type_print"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            app:matchType="@{matchViewModel.match.type}"
+                            app:layout_constraintStart_toEndOf="@+id/icon_type"
+                            app:layout_constraintTop_toTopOf="@+id/icon_type"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_type"/>
+
+                        <View
+                            android:id="@+id/divider12"
+                            android:layout_width="304dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="4dp"
+                            android:background="?android:attr/listDivider"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/match_title_print" />
+
+                        <ImageView
+                            android:id="@+id/icon_owner"
+                            android:layout_width="52dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/divider12"
+                            app:srcCompat="@drawable/ic_account_box_18dp" />
+
+                        <TextView
+                            android:id="@+id/match_owner_print"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{matchViewModel.ownerName.toString()}"
+                            android:textSize="18sp"
+                            android:textColor="@color/white"
+                            app:layout_constraintStart_toEndOf="@+id/icon_owner"
+                            app:layout_constraintTop_toTopOf="@+id/icon_owner"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_owner"/>
+
+                        <View
+                            android:id="@+id/divider13"
+                            android:layout_width="304dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="12dp"
+                            android:background="?android:attr/listDivider"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/match_owner_print" />
+
+                        <ImageView
+                            android:id="@+id/icon_date"
+                            android:layout_width="52dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:srcCompat="@drawable/ic_calendar_white_18dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/divider13"/>
+
+                        <TextView
+                            android:id="@+id/match_date_print"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:textColor="@color/white"
+                            app:dateStringMatch="@{matchViewModel.match.date}"
+                            app:layout_constraintStart_toEndOf="@+id/icon_date"
+                            app:layout_constraintTop_toTopOf="@+id/icon_date"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_date"/>
+
+                        <View
+                            android:id="@+id/divider14"
+                            android:layout_width="304dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="12dp"
+                            android:background="?android:attr/listDivider"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/match_date_print" />
+
+                        <ImageView
+                            android:id="@+id/icon_location"
+                            android:layout_width="52dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/divider14"
+                            app:srcCompat="@drawable/ic_pin_drop_white_24dp" />
+
+                        <TextView
+                            android:id="@+id/matchPlacePrint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{matchViewModel.match.place}"
+                            android:textSize="18sp"
+                            android:textColor="@color/white"
+                            app:layout_constraintStart_toEndOf="@+id/icon_location"
+                            app:layout_constraintTop_toTopOf="@+id/icon_location"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_location"/>
+
+
+                        <View
+                            android:id="@+id/divider15"
+                            android:layout_width="304dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="12dp"
+                            android:background="?android:attr/listDivider"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/matchPlacePrint" />
+
+                        <ImageView
+                            android:id="@+id/icon_price"
+                            android:layout_width="52dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/divider15"
+                            app:srcCompat="@drawable/euro_symbol_white" />
+
+                        <TextView
+                            android:id="@+id/match_cost_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{matchViewModel.match.price.toString()}"
+                            android:textSize="18sp"
+                            android:textColor="@color/white"
+                            app:layout_constraintStart_toEndOf="@+id/icon_price"
+                            app:layout_constraintTop_toTopOf="@+id/icon_price"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_price"/>
+
+
+                        <View
+                            android:id="@+id/divider16"
+                            android:layout_width="1dp"
+                            android:layout_height="36dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="?android:attr/listDivider"
+                            tools:layout_editor_absoluteX="91dp"
+                            tools:layout_editor_absoluteY="1dp"
+                            app:layout_constraintStart_toEndOf="@+id/match_cost_value"
+                            app:layout_constraintTop_toTopOf="@+id/icon_price"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_price"/>
+
+                        <ImageView
+                            android:id="@+id/icon_status"
+                            android:layout_width="52dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_price"
+                            app:layout_constraintStart_toEndOf="@+id/divider16"
+                            app:layout_constraintTop_toTopOf="@+id/icon_price"
+                            app:layout_constraintVertical_bias="1.0"
+                            app:srcCompat="@drawable/ic_check_circle_outline_18dp" />
+
+                        <TextView
+                            android:id="@+id/match_status_print"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            app:bindMatchStatus="@{matchViewModel.match.isConfirmed}"
+                            app:layout_constraintStart_toEndOf="@+id/icon_status"
+                            app:layout_constraintTop_toTopOf="@+id/icon_status"
+                            app:layout_constraintBottom_toBottomOf="@+id/icon_status"/>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/number_participants"
+                    android:layout_width="52dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.025"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView"
+                    app:srcCompat="@drawable/ic_friend_added" />
+
+
+                <TextView
+                    android:id="@+id/number_participants_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="@{matchViewModel.match.numberParticipants.toString()}"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/button_remove_participant"
+                    app:layout_constraintTop_toTopOf="@+id/number_participants"
+                    app:layout_constraintBottom_toBottomOf="@+id/number_participants" />
+
+                <Button
+                    android:id="@+id/delete_match_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:onClick="@{() -> matchViewModel.deleteMatch()}"
+                    android:text="@string/delete_match_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/publish_match_button"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:match_user_status="@{matchViewModel.matchUserStatus}"
+                    app:match_view_model="@{matchViewModel}" />
+
+                <Button
+                    android:id="@+id/publish_match_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> matchViewModel.changePublishStatus()}"
+                    app:bindPublishMatchStatus="@{matchViewModel.match.isPublic}"
+                    app:layout_constraintBottom_toBottomOf="@+id/interaction1_match_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/interaction1_match_button"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:match_user_status="@{matchViewModel.matchUserStatus}"
+                    app:match_view_model="@{matchViewModel}" />
+
+                <Button
+                    android:id="@+id/status_match_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:onClick="@{() -> matchViewModel.changeConfirmStatus()}"
+                    android:text="@string/cancel_match_button"
+                    app:layout_constraintStart_toStartOf="@+id/interaction1_match_button"
+                    app:layout_constraintTop_toBottomOf="@+id/interaction1_match_button"
+                    app:match_user_status="@{matchViewModel.matchUserStatus}"
+                    app:match_view_model="@{matchViewModel}" />
+
+                <Button
+                    android:id="@+id/archive_match_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:onClick="@{() -> matchViewModel.archiveMatch()}"
+                    android:text="@string/match_archive"
+                    android:textColorHighlight="@color/colorAccent"
+                    android:textColorLink="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/show_participants_button"
+                    app:layout_constraintTop_toBottomOf="@+id/interaction2_match_button"
+                    app:match_user_status="@{matchViewModel.matchUserStatus}"
+                    app:match_view_model="@{matchViewModel}" />
+
+
+                <Button
+                    android:id="@+id/show_participants_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> matchViewModel.showPlayers()}"
+                    android:text="@string/match_show_participants"
+                    android:textColorHighlight="@color/colorAccent"
+                    android:textColorLink="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/number_participants"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.909"
+                    app:layout_constraintStart_toStartOf="@+id/number_participants"
+                    app:layout_constraintTop_toTopOf="@+id/number_participants"
+                    app:layout_constraintVertical_bias="0.368"
+                    app:match_user_status="@{matchViewModel.matchUserStatus}"
+                    app:match_view_model="@{matchViewModel}" />
+
+                <Button
+                    android:id="@+id/interaction1_match_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColorHighlight="@color/colorAccent"
+                    android:textColorLink="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="@+id/number_participants"
+                    app:layout_constraintTop_toBottomOf="@+id/number_participants"
+                    app:match_user_status="@{matchViewModel.matchUserStatus}"
+                    app:match_view_model="@{matchViewModel}" />
+
+                <Button
+                    android:id="@+id/interaction2_match_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textColorHighlight="@color/colorAccent"
+                    android:textColorLink="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/interaction1_match_button"
+                    app:layout_constraintEnd_toEndOf="@+id/show_participants_button"
+                    app:layout_constraintTop_toTopOf="@+id/interaction1_match_button"
+                    app:match_user_status="@{matchViewModel.matchUserStatus}"
+                    app:match_view_model="@{matchViewModel}" />
+
+                <Button
+                    android:id="@+id/button_add_participant"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/colorAccent"
+                    android:onClick="@{() -> matchViewModel.addParticipant()}"
+                    android:text="+"
+                    android:textColorLink="#FFFFFF"
+                    app:layout_constraintTop_toTopOf="@+id/number_participants"
+                    app:layout_constraintBottom_toBottomOf="@+id/number_participants"
+                    app:layout_constraintStart_toEndOf="@+id/number_participants_value"
+                    app:match_user_status="@{matchViewModel.matchUserStatus}"
+                    app:match_view_model="@{matchViewModel}" />
+
+                <Button
+                    android:id="@+id/button_remove_participant"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@color/colorAccent"
+                    android:onClick="@{() -> matchViewModel.removeParticipant()}"
+                    android:text="-"
+                    android:textColorLink="#FFFFFF"
+                    app:layout_constraintTop_toTopOf="@+id/number_participants"
+                    app:layout_constraintBottom_toBottomOf="@+id/number_participants"
+                    app:layout_constraintStart_toEndOf="@+id/number_participants"
+                    app:match_user_status="@{matchViewModel.matchUserStatus}"
+                    app:match_view_model="@{matchViewModel}" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            app:bindMatchViewStatus="@{matchViewModel.fragmentStatus}" />
+
+        <TextView
+            android:id="@+id/text_match_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:bindMatchViewStatus="@{matchViewModel.fragmentStatus}" />
+
+    </LinearLayout>
+
+</layout>

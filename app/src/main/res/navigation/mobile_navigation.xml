@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.android.dreamteam.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_newMatchFragment2"
+            app:destination="@id/newMatchFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_matchFragment"
+            app:destination="@id/matchFragment" >
+            <argument
+                android:name="matchId" />
+            <argument
+                android:name="path" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.android.dreamteam.ui.settings.SettingsFragment"
+        android:label="@string/title_settings" >
+        <action
+            android:id="@+id/action_navigation_settings_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_navigation_settings_to_matchListFragment"
+            app:destination="@id/matchListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.android.dreamteam.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_navigation_notifications_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_navigation_notifications_to_matchFragment"
+            app:destination="@id/matchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_friends"
+        android:name="com.example.android.dreamteam.ui.friends.FriendsFragment"
+        android:label="@string/title_friends"
+        tools:layout="@layout/friends_fragment" >
+        <action
+            android:id="@+id/action_navigation_friends_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.android.dreamteam.ui.account.AccountFragment"
+        android:label="Profile"
+        tools:layout="@layout/account_fragment">
+        <argument
+            android:name="uid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_accountFragment_to_editAccountFragment"
+            app:destination="@id/editAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newMatchFragment"
+        android:name="com.example.android.dreamteam.ui.newMatch.NewMatchFragment"
+        android:label="Create Match"
+        tools:layout="@layout/fragment_new_match">
+        <action
+            android:id="@+id/action_newMatchFragment_to_navigation_home2"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchFragment"
+        android:name="com.example.android.dreamteam.ui.match.MatchFragment"
+        android:label="Match"
+        tools:layout="@layout/match_fragment">
+        <action
+            android:id="@+id/action_matchFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_matchFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <argument
+            android:name="matchId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="path"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_matchFragment_to_matchPlayersFragment"
+            app:destination="@id/matchPlayersFragment">
+            <argument
+                android:name="whichList"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/editAccountFragment"
+        android:name="com.example.android.dreamteam.ui.account.EditAccountFragment"
+        android:label="Edit Account"
+        tools:layout="@layout/edit_account_fragment">
+        <action
+            android:id="@+id/action_editAccountFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.android.dreamteam.ui.chat.ChatFragment"
+        android:label="Match Chat">
+        <argument
+            android:name="matchId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchListFragment"
+        android:name="com.example.android.dreamteam.ui.home.MatchListFragment"
+        android:label="Matches List">
+        <action
+            android:id="@+id/action_matchListFragment_to_matchFragment"
+            app:destination="@id/matchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchPlayersFragment"
+        android:name="com.example.android.dreamteam.ui.match.MatchPlayersFragment"
+        android:label="Profiles List">
+        <argument
+            android:name="whichList"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_matchPlayersFragment_to_accountFragment"
+            app:destination="@id/accountFragment">
+            <argument
+                android:name="uid"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+</navigation>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="matchListViewModel"
+            type="com.example.android.dreamteam.ui.home.MatchListViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.android.dreamteam.ui.home.MatchListFragment">
+
+        <TextView
+            android:id="@+id/no_matches"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:bindMatchListStatus="@{matchListViewModel.fragmentStatus}"
+            android:gravity="center_horizontal" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:bindMatchListLayoutStatus="@{matchListViewModel.fragmentStatus}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/match_list"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:bindMatchListStatus="@{matchListViewModel.fragmentStatus}"/>
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ImageView
+            android:id="@+id/status_image_list"
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            app:userApiStatus="@{matchListViewModel.status}" />
+
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="friendsListViewModel"
+            type="com.example.android.dreamteam.ui.friends.FriendsListViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.android.dreamteam.ui.friends.FriendsListFragment">
+
+        <TextView
+            android:id="@+id/no_friends"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:bindFriendsListStatus="@{friendsListViewModel.fragmentStatus}"
+            android:gravity="center_horizontal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_friends"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:bindFriendsListStatus="@{friendsListViewModel.fragmentStatus}"/>
+
+        <ImageView
+            android:id="@+id/status_image_list"
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            app:userApiStatus="@{friendsListViewModel.status}" />
+
+    </LinearLayout>
+
+
+</layout>

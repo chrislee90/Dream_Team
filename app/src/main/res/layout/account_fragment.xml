@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="accountViewModel"
+            type="com.example.android.dreamteam.ui.account.AccountViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:userApiStatus="@{accountViewModel.status}">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".ui.account.AccountFragment">
+
+                <ImageView
+                    android:id="@+id/header_cover_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/soccer_field_profile"
+                    app:srcCompat="@drawable/soccer_field_profile"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="-1dp" />
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/user_picture"
+                    android:layout_width="200dp"
+
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/header_cover_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="48dp"
+                    android:elevation="5dp"
+                    android:padding="20dp"
+                    android:scaleType="centerCrop"
+                    app:civ_border_color="#FFFFFFFF"
+                    app:civ_border_width="3dp"
+                    app:imageUrl="@{accountViewModel.picture}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="@+id/header_cover_image"
+                    app:layout_constraintTop_toTopOf="@+id/header_cover_image" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="306dp"
+                    android:layout_height="490dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="36dp"
+                    app:cardElevation="8dp"
+                    app:cardMaxElevation="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.588"
+                    app:layout_constraintStart_toStartOf="@+id/header_cover_image"
+                    app:layout_constraintTop_toBottomOf="@+id/user_picture"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="289dp"
+                            android:layout_height="436dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="0.9"
+                            android:orientation="vertical">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/user_icon"
+                                    android:layout_width="53dp"
+                                    android:layout_height="62dp"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginLeft="16dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/ic_account_box_18dp" />
+
+                                <TextView
+                                    android:id="@+id/user_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_margin="20dp"
+                                    android:text="@{@string/quote_format(accountViewModel.name)}"
+                                    android:textStyle="bold"
+                                    android:textSize="20dp"
+                                    android:textColor="#FFFFFF"
+                                    app:layout_constraintStart_toEndOf="@+id/user_icon"
+                                    app:layout_constraintTop_toTopOf="parent"/>
+
+                                <ImageView
+                                    android:id="@+id/icon_email"
+                                    android:layout_width="38dp"
+                                    android:layout_height="49dp"
+                                    android:layout_margin="20dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/user_name"
+                                    app:srcCompat="@drawable/ic_email_18dp" />
+
+                                <TextView
+                                    android:id="@+id/user_email"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="20dp"
+                                    android:text="@{@string/format_email(accountViewModel.email)}"
+                                    android:textSize="14dp"
+                                    android:textColor="#FFFFFF"
+                                    app:userPrivacy="@{accountViewModel.emailPublic}"
+                                    app:layout_constraintStart_toEndOf="@+id/icon_email"
+                                    app:layout_constraintTop_toTopOf="@+id/icon_email"
+                                    app:layout_constraintBottom_toBottomOf="@+id/icon_email"/>
+
+                                <ImageView
+                                    android:id="@+id/icon_phone"
+                                    android:layout_width="38dp"
+                                    android:layout_height="49dp"
+                                    android:layout_margin="20dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/icon_email"
+                                    app:srcCompat="@drawable/ic_call_18dp" />
+
+                                <TextView
+                                    android:id="@+id/user_phone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="20dp"
+                                    android:text="@{@string/format_phone(accountViewModel.phoneNumber)}"
+                                    android:textSize="14dp"
+                                    android:textColor="#FFFFFF"
+                                    app:userPrivacy="@{accountViewModel.phonePublic}"
+                                    app:layout_constraintStart_toEndOf="@+id/icon_phone"
+                                    app:layout_constraintTop_toTopOf="@+id/icon_phone"
+                                    app:layout_constraintBottom_toBottomOf="@+id/icon_phone"/>
+
+                                <ImageView
+                                    android:id="@+id/icon_role"
+                                    android:layout_width="38dp"
+                                    android:layout_height="49dp"
+                                    android:layout_margin="20dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/icon_phone"
+                                    app:srcCompat="@drawable/ic_sports_soccer_18dp" />
+
+                                <TextView
+                                    android:id="@+id/user_role"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="20dp"
+                                    android:text="@{@string/format_role(accountViewModel.role)}"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14dp"
+                                    app:layout_constraintStart_toEndOf="@+id/icon_role"
+                                    app:layout_constraintTop_toTopOf="@+id/icon_role"
+                                    app:layout_constraintBottom_toBottomOf="@+id/icon_role"/>
+
+                                <ImageView
+                                    android:id="@+id/icon_info"
+                                    android:layout_width="38dp"
+                                    android:layout_height="49dp"
+                                    android:layout_margin="20dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/icon_role"
+                                    app:srcCompat="@drawable/ic_announcement_18dp" />
+
+                                <TextView
+                                    android:id="@+id/user_info"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="20dp"
+                                    android:text="@{@string/format_info(accountViewModel.info)}"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14dp"
+                                    app:layout_constraintStart_toEndOf="@+id/icon_info"
+                                    app:layout_constraintTop_toTopOf="@+id/icon_info"
+                                    app:layout_constraintBottom_toBottomOf="@+id/icon_info"/>
+
+                                <View
+                                    android:id="@+id/divider7"
+                                    android:layout_width="287dp"
+                                    android:layout_height="1dp"
+                                    android:background="?android:attr/listDivider"
+                                    android:color="@color/white"
+                                    app:layout_constraintTop_toBottomOf="@+id/user_icon"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:layout_editor_absoluteX="1dp" />
+
+                                <View
+                                    android:id="@+id/divider8"
+                                    android:layout_width="287dp"
+                                    android:layout_height="1dp"
+                                    android:background="?android:attr/listDivider"
+                                    android:color="@color/white"
+                                    app:layout_constraintTop_toBottomOf="@+id/icon_email"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:layout_editor_absoluteX="1dp" />
+
+                                <View
+                                    android:id="@+id/divider9"
+                                    android:layout_width="287dp"
+                                    android:layout_height="1dp"
+                                    android:background="?android:attr/listDivider"
+                                    android:color="@color/white"
+                                    app:layout_constraintTop_toBottomOf="@+id/icon_phone"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:layout_editor_absoluteX="1dp" />
+
+                                <View
+                                    android:id="@+id/divider10"
+                                    android:layout_width="287dp"
+                                    android:layout_height="1dp"
+                                    android:background="?android:attr/listDivider"
+                                    android:color="@color/white"
+                                    app:layout_constraintTop_toBottomOf="@+id/icon_role"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:layout_editor_absoluteX="1dp" />
+
+                                <View
+                                    android:id="@+id/divider11"
+                                    android:layout_width="287dp"
+                                    android:layout_height="1dp"
+                                    android:background="?android:attr/listDivider"
+                                    android:color="@color/white"
+                                    app:layout_constraintTop_toBottomOf="@+id/icon_info"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:layout_editor_absoluteX="1dp" />
+
+                                <Button
+                                    android:id="@+id/button_pos_friendship"
+                                    android:layout_width="80dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginTop="44dp"
+                                    android:textSize="10dp"
+                                    app:layout_constraintStart_toStartOf="@+id/icon_info"
+                                    app:layout_constraintTop_toBottomOf="@+id/divider11"
+                                    app:status_pos="@{accountViewModel.friendshipStatus}"
+                                    app:view_pos="@{accountViewModel}" />
+
+                                <Button
+                                    android:id="@+id/button_neg_friendship"
+                                    android:layout_width="80dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginTop="120dp"
+                                    android:layout_marginEnd="32dp"
+                                    android:layout_marginRight="32dp"
+                                    android:textSize="10dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/button_pos_friendship"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/button_pos_friendship"
+                                    app:layout_constraintVertical_bias="1.0"
+                                    app:status_neg="@{accountViewModel.friendshipStatus}"
+                                    app:view_neg="@{accountViewModel}" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+                    </ScrollView>
+
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            app:userApiStatus="@{accountViewModel.status}" />
+
+    </LinearLayout>
+
+</layout>
