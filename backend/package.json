@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ChrisLee90/DreamTeam#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "firebase": "^7.11.0"
   }
 }
